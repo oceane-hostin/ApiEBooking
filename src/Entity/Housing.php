@@ -29,7 +29,7 @@ class Housing
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $adresse;
+    private $address;
 
     /**
      * @ORM\Column(type="float")
@@ -90,14 +90,14 @@ class Housing
         return $this;
     }
 
-    public function getAdresse(): ?string
+    public function getAddress(): ?string
     {
-        return $this->adresse;
+        return $this->address;
     }
 
-    public function setAdresse(string $adresse): self
+    public function setAddress(string $address): self
     {
-        $this->adresse = $adresse;
+        $this->address = $address;
 
         return $this;
     }
