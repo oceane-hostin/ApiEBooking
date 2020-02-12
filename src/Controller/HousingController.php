@@ -61,21 +61,11 @@ class HousingController extends AbstractController
      *
      * @return Response
      */
-    public function createHousingAction(Request $request) {
-        $headers = $request->headers->all();
+    public function createHousingAction(Request $request, SerializerInterface $serializer) {
+        $body = $request->getContent();
 
         try {
-            $housing = new Housing();
-            $housing
-                ->setName($headers["name"][0])
-                ->setDescription($headers["description"][0])
-                ->setAddress($headers["address"][0])
-                ->setPricePerDay($headers["price-per-day"][0])
-                ->setSurfaceArea($headers["surface-area"][0])
-                ->setNumberOfTravellers($headers["number-of-travellers"][0])
-                ->setNumberOfBedrooms($headers["number-of-bedrooms"][0])
-                ->setNumberOfBed($headers["number-of-bed"][0])
-                ->setNumberOfBathrooms($headers["number-of-bathrooms"][0]);
+            $housing = $serializer->deserialize($body, Housing::class, 'json' );
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($housing);
