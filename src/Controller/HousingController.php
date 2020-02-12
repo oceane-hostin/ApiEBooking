@@ -84,26 +84,33 @@ class HousingController extends AbstractController
      *
      * @return Response
      */
-    public function updateHousingAction(Request $request, $id) {
+    public function updateHousingAction(Request $request, SerializerInterface $serializer, $id) {
         $repository = $this->getDoctrine()->getRepository(Housing::class);
+        /**
+         * @var \App\Entity\Housing $housing
+         */
         $housing = $repository->find($id);
 
-        $headers = $request->headers->all();
+        $body = $request->getContent();
 
         try {
+            /**
+             * @var \App\Entity\Housing $housingData
+             */
+            $housingData = $serializer->deserialize($body, Housing::class, 'json' );
             $housing
-                ->setName($headers["name"][0])
-                ->setDescription($headers["description"][0])
-                ->setAddress($headers["address"][0])
-                ->setPricePerDay($headers["price-per-day"][0])
-                ->setSurfaceArea($headers["surface-area"][0])
-                ->setNumberOfTravellers($headers["number-of-travellers"][0])
-                ->setNumberOfBedrooms($headers["number-of-bedrooms"][0])
-                ->setNumberOfBed($headers["number-of-bed"][0])
-                ->setNumberOfBathrooms($headers["number-of-bathrooms"][0]);
+                ->setName($housingData->getName())
+                ->setDescription($housingData->getDescription())
+                ->setAddress($housingData->getAddress())
+                ->setPricePerDay($housingData->getPricePerDay())
+                ->setSurfaceArea($housingData->getSurfaceArea())
+                ->setNumberOfTravellers($housingData->getNumberOfTravellers())
+                ->setNumberOfBedrooms($housingData->getNumberOfBedrooms())
+                ->setNumberOfBed($housingData->getNumberOfBed())
+                ->setNumberOfBathrooms($housingData->getNumberOfBathrooms())
+            ;
 
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($housing);
             $entityManager->flush();
 
             return new Response('Housing updated successfully');
