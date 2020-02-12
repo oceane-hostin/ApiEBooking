@@ -61,6 +61,12 @@ class Housing
      */
     private $numberOfBathrooms;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Person", inversedBy="relation")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $person;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -170,6 +176,18 @@ class Housing
     public function setNumberOfBathrooms(int $numberOfBathrooms): self
     {
         $this->numberOfBathrooms = $numberOfBathrooms;
+
+        return $this;
+    }
+
+    public function getPerson(): ?Person
+    {
+        return $this->person;
+    }
+
+    public function setPerson(?Person $person): self
+    {
+        $this->person = $person;
 
         return $this;
     }
