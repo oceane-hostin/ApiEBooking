@@ -79,7 +79,7 @@ class HousingController extends AbstractController
     }
 
     /**
-     * Updating an existing housing object
+     * Updating an existing housing object by id
      * @Route("/update/{id}", name="update")
      *
      * @return Response
@@ -117,6 +117,29 @@ class HousingController extends AbstractController
 
         } catch (Exception $e) {
             return new Response('Housing couldn\'t be updated' . $e);
+        }
+    }
+
+    /**
+     * Deleting an housing object by id
+     * @Route("/delete/{id}", name="delete")
+     *
+     * @return Response
+     */
+    public function deleteHousingAction($id) {
+        $repository = $this->getDoctrine()->getRepository(Housing::class);
+
+        $housing = $repository->find($id);
+
+        try {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($housing);
+            $entityManager->flush();
+
+            return new Response('Housing deleted successfully');
+
+        } catch (Exception $e) {
+            return new Response('Housing couldn\'t be deleted' . $e);
         }
     }
 }
