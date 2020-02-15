@@ -9,9 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-// use FOS\RestBundle\Controller\AbstractFOSRestController;
-// use FOS\RestBundle\Controller\Annotations as Rest;
-// use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 
 /**
@@ -68,7 +65,7 @@ class HousingController extends AbstractController
             $housing = $serializer->deserialize($body, Housing::class, 'json' );
 
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($housing);
+            $entityManager->merge($housing);
             $entityManager->flush();
 
             return new Response('Housing added successfully');

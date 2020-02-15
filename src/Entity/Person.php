@@ -21,32 +21,32 @@ class Person
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $FirstName;
+    private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $LastName;
+    private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Email;
+    private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Password;
+    private $password;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $DateOfBirth;
+    private $dateOfBirth;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $IsAdmin;
+    private $isAdmin;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Housing", mappedBy="person", orphanRemoval=true)
@@ -65,72 +65,72 @@ class Person
 
     public function getFirstName(): ?string
     {
-        return $this->FirstName;
+        return $this->firstName;
     }
 
-    public function setFirstName(string $FirstName): self
+    public function setFirstName(string $firstName): self
     {
-        $this->FirstName = $FirstName;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
     public function getLastName(): ?string
     {
-        return $this->LastName;
+        return $this->lastName;
     }
 
-    public function setLastName(string $LastName): self
+    public function setLastName(string $lastName): self
     {
-        $this->LastName = $LastName;
+        $this->lastName = $lastName;
 
         return $this;
     }
 
     public function getEmail(): ?string
     {
-        return $this->Email;
+        return $this->email;
     }
 
-    public function setEmail(string $Email): self
+    public function setEmail(string $email): self
     {
-        $this->Email = $Email;
+        $this->email = $email;
 
         return $this;
     }
 
     public function getPassword(): ?string
     {
-        return $this->Password;
+        return $this->password;
     }
 
-    public function setPassword(string $Password): self
+    public function setPassword(string $password): self
     {
-        $this->Password = $Password;
+        $this->password = $password;
 
         return $this;
     }
 
     public function getDateOfBirth(): ?\DateTimeInterface
     {
-        return $this->DateOfBirth;
+        return $this->dateOfBirth;
     }
 
-    public function setDateOfBirth(\DateTimeInterface $DateOfBirth): self
+    public function setDateOfBirth(\DateTimeInterface $dateOfBirth): self
     {
-        $this->DateOfBirth = $DateOfBirth;
+        $this->dateOfBirth = $dateOfBirth;
 
         return $this;
     }
 
     public function getIsAdmin(): ?bool
     {
-        return $this->IsAdmin;
+        return $this->isAdmin;
     }
 
-    public function setIsAdmin(bool $IsAdmin): self
+    public function setIsAdmin(bool $isAdmin): self
     {
-        $this->IsAdmin = $IsAdmin;
+        $this->isAdmin = $isAdmin;
 
         return $this;
     }
