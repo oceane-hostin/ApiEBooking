@@ -63,6 +63,8 @@ class HousingController extends AbstractController
 
         try {
             $housing = $serializer->deserialize($body, Housing::class, 'json' );
+            $housing->setCreatedAt(new \DateTime());
+            $housing->setUpdatedAt(new \DateTime());
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->merge($housing);
@@ -105,6 +107,7 @@ class HousingController extends AbstractController
                 ->setNumberOfBedrooms($housingData->getNumberOfBedrooms())
                 ->setNumberOfBed($housingData->getNumberOfBed())
                 ->setNumberOfBathrooms($housingData->getNumberOfBathrooms())
+                ->setUpdatedAt(new \DateTime())
             ;
 
             $entityManager = $this->getDoctrine()->getManager();

@@ -63,6 +63,8 @@ class PersonController extends AbstractController
 
         try {
             $person = $serializer->deserialize($body, Person::class, 'json' );
+            $person->setCreatedAt(new \DateTime());
+            $person->setUpdatedAt(new \DateTime());
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($person);
@@ -102,6 +104,7 @@ class PersonController extends AbstractController
                 ->setPassword($personData->getPassword())
                 ->setDateOfBirth($personData->getDateOfBirth())
                 ->setIsAdmin($personData->getIsAdmin())
+                ->setUpdatedAt(new \DateTime())
             ;
 
             $entityManager = $this->getDoctrine()->getManager();

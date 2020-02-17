@@ -49,6 +49,16 @@ class Person
     private $isAdmin;
 
     /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $updatedAt;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Housing", mappedBy="person", orphanRemoval=true)
      */
     private $housings;
@@ -131,6 +141,30 @@ class Person
     public function setIsAdmin(bool $isAdmin): self
     {
         $this->isAdmin = $isAdmin;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
