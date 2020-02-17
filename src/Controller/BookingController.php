@@ -117,6 +117,35 @@ class BookingController extends AbstractController
     }
 
     /**
+     * Confirm a booking by id
+     * @Route("/confirm/{id}", name="update")
+     *
+     * @return Response
+     */
+    public function confirmBookingAction(Request $request, SerializerInterface $serializer, $id) {
+        $repository = $this->getDoctrine()->getRepository(Booking::class);
+        /**
+         * @var \App\Entity\Booking $housing
+         */
+        $booking = $repository->find($id);
+
+        $body = $request->getContent();
+
+        try {
+            $booking
+                ->setIsConfirmed(true);
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
+
+            return new Response('Booking confirmed successfully');
+
+        } catch (Exception $e) {
+            return new Response('Booking couldn\'t be confirmed' . $e);
+        }
+    }
+
+    /**
      * Deleting an booking object by id
      * @Route("/delete/{id}", name="delete")
      *

@@ -212,4 +212,6 @@ With body row json like :
 }   
 ```
 
+* Confirm : /booking/confirm/{id}  
+
 * Delete (DELETE): booking/delete/{id}
