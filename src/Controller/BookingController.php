@@ -115,4 +115,27 @@ class BookingController extends AbstractController
             return new Response('Booking couldn\'t be created' . $e);
         }
     }
+
+    /**
+     * Deleting an booking object by id
+     * @Route("/delete/{id}", name="delete")
+     *
+     * @return Response
+     */
+    public function deleteBookingAction($id) {
+        $repository = $this->getDoctrine()->getRepository(Booking::class);
+
+        $booking = $repository->find($id);
+
+        try {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($booking);
+            $entityManager->flush();
+
+            return new Response('Booking deleted successfully');
+
+        } catch (Exception $e) {
+            return new Response('Booking couldn\'t be deleted' . $e);
+        }
+    }
 }

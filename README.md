@@ -197,7 +197,6 @@ Return json like :
 }
 ```
 
-
 * Create (POST) : /booking/create  
 With body row json like :  
 ```
@@ -212,3 +211,5 @@ With body row json like :
     }
 }   
 ```
+
+* Delete (DELETE): booking/delete/{id}
