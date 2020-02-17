@@ -47,4 +47,14 @@ class BookingRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findPersonBookings($person) {
+        $qb = $this->createQueryBuilder('b')
+            ->where('b.person = :id')
+            ->setParameter('id', $person);
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
 }

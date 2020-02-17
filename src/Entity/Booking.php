@@ -27,13 +27,13 @@ class Booking
     private $endingDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\housing", inversedBy="bookings")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Housing", inversedBy="bookings")
      * @ORM\JoinColumn(nullable=false)
      */
     private $housing;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\person", inversedBy="bookings")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Person", inversedBy="bookings")
      * @ORM\JoinColumn(nullable=false)
      */
     private $person;
