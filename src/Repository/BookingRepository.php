@@ -50,8 +50,18 @@ class BookingRepository extends ServiceEntityRepository
 
     public function findPersonBookings($person) {
         $qb = $this->createQueryBuilder('b')
-            ->where('b.person = :id')
-            ->setParameter('id', $person);
+            ->where('b.person = :person')
+            ->setParameter('person', $person);
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
+
+    public function findHousingBookings($housing) {
+        $qb = $this->createQueryBuilder('b')
+            ->where('b.housing = :housing')
+            ->setParameter('housing', $housing);
 
         $query = $qb->getQuery();
 

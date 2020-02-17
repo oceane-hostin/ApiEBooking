@@ -165,6 +165,23 @@ Return json like :
 ]
 ```
 
+* Get housing's booking (GET) : /booking/read/housing_id/{id}  
+Return json like :  
+```
+[
+    {
+        "id": 1,
+        "beginning_date": "2020-02-11T00:00:00+01:00",
+        "ending_date": "2020-02-21T00:00:00+01:00",
+        "housing": { ... },
+        "person": { ... },
+        "is_confirmed": false,
+        "created_at": "2020-02-17T00:00:00+01:00",
+        "updated_at": "2020-02-17T00:00:00+01:00"
+    }
+]
+```
+
 * Get one (GET) : /booking/read/id/{id}  
 Return json like :  
 ```

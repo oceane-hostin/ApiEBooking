@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Booking;
+use App\Entity\Housing;
 use App\Entity\Person;
 use Exception;
 use JMS\Serializer\SerializationContext;
@@ -32,6 +33,29 @@ class BookingController extends AbstractController
         $person = $this->getDoctrine()->getRepository(Person::class)->find($personId);
 
         $bookingCollection = $repository->findPersonBookings($person);
+
+        $bookingCollection = $serializer->serialize($bookingCollection, 'json');
+
+        $response = new Response($bookingCollection);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+    /**
+     * Lists all Booking for a particular housing.
+     * @Route("/read/housing_id/{housingId}", name="read")
+     *
+     * @return Response
+     */
+    public function getHousingBookingsAction(SerializerInterface $serializer, $housingId){
+        /**
+         * @var \App\Repository\BookingRepository $repository
+         */
+        $repository = $this->getDoctrine()->getRepository(Booking::class);
+
+        $housing = $this->getDoctrine()->getRepository(Housing::class)->find($housingId);
+
+        $bookingCollection = $repository->findHousingBookings($housing);
 
         $bookingCollection = $serializer->serialize($bookingCollection, 'json');
 
