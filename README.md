@@ -39,7 +39,7 @@ Return json like :
 } 
 ```
 
-* Create (POST) : /housing/create
+* Create (POST) : /housing/create  
 With body row json like :  
 ```
 {  
@@ -58,7 +58,7 @@ With body row json like :
 }   
 ```
 
-* Update (PUT) : /housing/update/{id} 
+* Update (PUT) : /housing/update/{id}  
 With body form-data like : 
 ```
 {  
@@ -112,7 +112,7 @@ Return json like :
 } 
 ```
 
-* Create (POST) : /person/create
+* Create (POST) : /person/create  
 With body row json like :  
 ```
 {
@@ -125,7 +125,7 @@ With body row json like :
 }   
 ```
 
-* Update (PUT) : /person/update/{id} 
+* Update (PUT) : /person/update/{id}  
 With body form-data like : 
 ```
 {
