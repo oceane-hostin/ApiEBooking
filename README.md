@@ -196,3 +196,19 @@ Return json like :
     "updated_at": "2020-02-17T00:00:00+01:00"
 }
 ```
+
+
+* Create (POST) : /booking/create  
+With body row json like :  
+```
+{  
+    "beginning_date": "2020-02-11T00:00:00+01:00",
+    "ending_date": "2020-02-18T00:00:00+01:00",
+    "housing" : {
+    	"id": 2
+    },
+    "person": {
+    	"id": 2
+    }
+}   
+```

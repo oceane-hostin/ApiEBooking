@@ -82,4 +82,37 @@ class BookingController extends AbstractController
 
         return $response;
     }
+
+    /**
+     * Create a booking item
+     * @Route("/create", name="create")
+     *
+     * @return Response
+     */
+    public function createBookingAction(Request $request, SerializerInterface $serializer) {
+        $body = $request->getContent();
+
+        try {
+            /**
+             * @var \App\Entity\Booking $booking
+             */
+            $booking = $serializer->deserialize($body, Booking::class, 'json' );
+            $booking->setCreatedAt(new \DateTime());
+            $booking->setUpdatedAt(new \DateTime());
+            $booking->setIsConfirmed(false);
+
+            if($booking->getBeginningDate() > $booking->getEndingDate()) {
+                throw new \Exception('Ending date cannot be before beginning date !');
+            }
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->merge($booking);
+            $entityManager->flush();
+
+            return new Response('Booking created successfully');
+
+        } catch (Exception $e) {
+            return new Response('Booking couldn\'t be created' . $e);
+        }
+    }
 }
