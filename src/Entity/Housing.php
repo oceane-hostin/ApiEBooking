@@ -100,9 +100,15 @@ class Housing
      */
     private $bookings;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="housing", orphanRemoval=true)
+     */
+    private $images;
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -315,6 +321,37 @@ class Housing
             // set the owning side to null (unless already changed)
             if ($booking->getHousing() === $this) {
                 $booking->setHousing(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setHousing($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            // set the owning side to null (unless already changed)
+            if ($image->getHousing() === $this) {
+                $image->setHousing(null);
             }
         }
 
