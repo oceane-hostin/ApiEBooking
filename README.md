@@ -21,7 +21,8 @@ Return json like :
         "number_of_bathrooms": 2,
         "created_at": "2020-02-17T18:47:09+01:00",
         "updated_at": "2020-02-17T18:49:08+01:00",
-        "person": { ... }  
+        "person": { ... },  
+        "images": { ... }
     }  
 ]  
 ```
@@ -45,7 +46,8 @@ Return json like :
     "number_of_bathrooms": 2,
     "created_at": "2020-02-17T18:47:09+01:00",
     "updated_at": "2020-02-17T18:49:08+01:00",
-    "person": { ... }  
+    "person": { ... },  
+    "images": { ... }
 } 
 ```
 
