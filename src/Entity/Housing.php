@@ -90,7 +90,7 @@ class Housing
     protected $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Person", inversedBy="relation")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Person", inversedBy="housings")
      * @ORM\JoinColumn(nullable=false)
      */
     private $person;

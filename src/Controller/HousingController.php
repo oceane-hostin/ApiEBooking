@@ -142,4 +142,31 @@ class HousingController extends AbstractController
             return new Response('Housing couldn\'t be deleted' . $e);
         }
     }
+
+    /**
+     * Get all cities for housings
+     * @Route("/cities", name="cities")
+     *
+     * @return Response
+     */
+    public function getAllCitiesAction(SerializerInterface $serializer) {
+        $repository = $this->getDoctrine()->getRepository(Housing::class);
+        $housingCollection = $repository->findAll();
+
+        $cities = [];
+        /**
+         * @var \App\Entity\Housing $housing
+         */
+        foreach ($housingCollection as $housing) {
+            $cities[] = $housing->getCity();
+        }
+        $cities = array_unique($cities);
+
+        $cities = $serializer->serialize($cities, 'json');
+
+        $response = new Response($cities);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
 }
