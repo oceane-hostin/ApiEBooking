@@ -139,4 +139,38 @@ class PersonController extends AbstractController
             return new Response('Person couldn\'t be deleted' . $e);
         }
     }
+
+    /**
+     * Try connexion
+     * @Route("/connect", name="connect")
+     *
+     * @return Response
+     */
+    public function connectAction(Request $request) {
+        $body = $request->getContent();
+        $connexionData = json_decode($body, true);
+        $email = $connexionData["email"];
+        $password = $connexionData["password"];
+
+        $repository = $this->getDoctrine()->getRepository(Person::class);
+        $person = $repository->findOneBy(
+            ['email' => $email]
+        );
+
+        /** @var Person $person */
+        if($person) {
+            if($person->getPassword() == $password) {
+                $status = "success";
+                $info = $person->getId();
+            } else {
+                $status = "failed";
+                $info = "wrong password";
+            }
+        } else {
+            $status = "failed";
+            $info = "wrong email";
+        }
+
+        return new Response('{"status": "'.$status.'", "info": "'.$info.'"}');
+    }
 }
