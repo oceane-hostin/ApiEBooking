@@ -63,18 +63,32 @@ class PersonController extends AbstractController
 
         try {
             $person = $serializer->deserialize($body, Person::class, 'json' );
-            $person->setCreatedAt(new \DateTime());
-            $person->setUpdatedAt(new \DateTime());
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($person);
-            $entityManager->flush();
+            // check if email doesn't already exist
+            $repository = $this->getDoctrine()->getRepository(Person::class);
+            $existingPerson = $repository->findOneBy(["email" => $person->getEmail()]);
 
-            return new Response('Person added successfully');
+            if($existingPerson->getId()) {
+                $status = "failed";
+                $info = "Email already exist";
+            } else {
+                $person->setCreatedAt(new \DateTime());
+                $person->setUpdatedAt(new \DateTime());
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($person);
+                $entityManager->flush();
+
+                $status = "success";
+                $info = $person->getId();
+            }
 
         } catch (Exception $e) {
-            return new Response('Person couldn\'t be added' . $e);
+            $status = "failed";
+            $info = "Person couldn't be added";
         }
+
+        return new Response('{"status": "'.$status.'", "info": "'.$info.'"}');
     }
 
     /**
