@@ -74,7 +74,7 @@ With body row json like :
 ```
 
 * Update (PUT) : /housing/update/{id}  
-With body form-data like : 
+With body row json like : 
 ```
 {  
     "name": "Petit Châlet à la montagne",  
@@ -146,7 +146,7 @@ With body row json like :
 ```
 
 * Update (PUT) : /person/update/{id}  
-With body form-data like : 
+With body row json like : 
 ```
 {
     "first_name": "John",
@@ -158,8 +158,17 @@ With body form-data like :
 }  
 ```
 
-* Delete (DELETE): person/delete/{id}
+* Delete (DELETE): person/delete/{id}  
 
+
+* Manage Connection (POST) : person/connect  
+With body row json like :  
+```
+{
+    "email" : "janedoe@gmail.com", 
+    "password" : "123"
+}
+```
 
 ## Manage booking  
 * Get person's booking (GET) : /booking/read/person_id/{id}  

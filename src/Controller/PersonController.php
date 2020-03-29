@@ -68,7 +68,7 @@ class PersonController extends AbstractController
             $repository = $this->getDoctrine()->getRepository(Person::class);
             $existingPerson = $repository->findOneBy(["email" => $person->getEmail()]);
 
-            if($existingPerson->getId()) {
+            if(isset($existingPerson)) {
                 $status = "failed";
                 $info = "Email already exist";
             } else {
