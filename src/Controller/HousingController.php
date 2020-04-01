@@ -70,11 +70,15 @@ class HousingController extends AbstractController
             $entityManager->merge($housing);
             $entityManager->flush();
 
-            return new Response('Housing added successfully');
+            $status = "success";
+            $info = $housing->getId();
 
         } catch (Exception $e) {
-            return new Response('Housing couldn\'t be added' . $e);
+            $status = "failed";
+            $info = "Housing couldn't be added";
         }
+
+        return new Response('{"status": "'.$status.'", "info": "'.$info.'"}');
     }
 
     /**

@@ -124,11 +124,15 @@ class PersonController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
 
-            return new Response('Person updated successfully');
+            $status = "success";
+            $info = $person->getId();
 
         } catch (Exception $e) {
-            return new Response('Person couldn\'t be updated' . $e);
+            $status = "failed";
+            $info = "Person couldn't be updated".$e;
         }
+
+        return new Response('{"status": "'.$status.'", "info": "'.$info.'"}');
     }
 
     /**
@@ -137,7 +141,7 @@ class PersonController extends AbstractController
      *
      * @return Response
      */
-    public function deleteHousingAction($id) {
+    public function deletePersonAction($id) {
         $repository = $this->getDoctrine()->getRepository(Person::class);
 
         $person = $repository->find($id);
@@ -147,10 +151,10 @@ class PersonController extends AbstractController
             $entityManager->remove($person);
             $entityManager->flush();
 
-            return new Response('Person deleted successfully');
+            return new Response('{"status": "success"}');
 
         } catch (Exception $e) {
-            return new Response('Person couldn\'t be deleted' . $e);
+            return new Response('{"status": "failed"}');
         }
     }
 

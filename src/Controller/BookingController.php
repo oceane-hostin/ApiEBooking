@@ -161,10 +161,10 @@ class BookingController extends AbstractController
             $entityManager->remove($booking);
             $entityManager->flush();
 
-            return new Response('Booking deleted successfully');
+            return new Response('{"status": "success"}');
 
         } catch (Exception $e) {
-            return new Response('Booking couldn\'t be deleted' . $e);
+            return new Response('{"status": "failed"}');
         }
     }
 }
