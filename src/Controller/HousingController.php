@@ -104,7 +104,10 @@ class HousingController extends AbstractController
             $housing
                 ->setName($housingData->getName())
                 ->setDescription($housingData->getDescription())
-                ->setAddress($housingData->getAddress())
+                ->setStreet($housingData->getStreet())
+                ->setCity($housingData->getCity())
+                ->setZipCode($housingData->getZipCode())
+                ->setCountry($housingData->getCountry())
                 ->setPricePerDay($housingData->getPricePerDay())
                 ->setSurfaceArea($housingData->getSurfaceArea())
                 ->setNumberOfTravellers($housingData->getNumberOfTravellers())
@@ -117,11 +120,14 @@ class HousingController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
 
-            return new Response('Housing updated successfully');
+            $status = "success";
+            $info = $housing->getId();
 
         } catch (Exception $e) {
-            return new Response('Housing couldn\'t be updated' . $e);
+            $status = "failed";
+            $info = "Housing couldn't be updated";
         }
+        return new Response('{"status": "'.$status.'", "info": "'.$info.'"}');
     }
 
     /**
@@ -140,10 +146,10 @@ class HousingController extends AbstractController
             $entityManager->remove($housing);
             $entityManager->flush();
 
-            return new Response('Housing deleted successfully');
+            return new Response('{"status": "success"}');
 
         } catch (Exception $e) {
-            return new Response('Housing couldn\'t be deleted' . $e);
+            return new Response('{"status": "failed"}');
         }
     }
 
