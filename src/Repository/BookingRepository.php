@@ -67,4 +67,19 @@ class BookingRepository extends ServiceEntityRepository
 
         return $query->execute();
     }
+
+    public function findCurrent($person) {
+        $today = \DateTime::createFromFormat( "Y-m-d H:i:s", date("Y-m-d 00:00:00") );
+
+        $qb = $this->createQueryBuilder('b')
+            ->where('b.person = :person')
+            ->andWhere('b.beginningDate <= :today')
+            ->andWhere('b.endingDate >= :today')
+            ->setParameter('person', $person)
+            ->setParameter('today', $today);
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
 }

@@ -66,6 +66,28 @@ class BookingController extends AbstractController
     }
 
     /**
+     * Get current booking for specific user, if exist
+     * @Route("/current/person_id/{id}", name="read_current")
+     *
+     * @return Response
+     */
+    public function getCurrentBookingByPersonIdAction(SerializerInterface $serializer, $id) {
+        /**
+         * @var \App\Repository\BookingRepository $repository
+         */
+        $repository = $this->getDoctrine()->getRepository(Booking::class);
+        $person = $this->getDoctrine()->getRepository(Person::class)->find($id);
+        $booking = $repository->findCurrent($person);
+
+        $booking = $serializer->serialize($booking, 'json');
+
+        $response = new Response($booking);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+    /**
      * Get on particular booking by Id
      * @Route("/read/id/{id}", name="read_single")
      *
