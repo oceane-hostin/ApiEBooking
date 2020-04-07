@@ -94,6 +94,9 @@ class BookingController extends AbstractController
      * @return Response
      */
     public function getBookingByIdAction(SerializerInterface $serializer, $id) {
+        /**
+         * @var \App\Repository\BookingRepository $repository
+         */
         $repository = $this->getDoctrine()->getRepository(Booking::class);
         $booking = $repository->find($id);
 
@@ -114,6 +117,11 @@ class BookingController extends AbstractController
     public function createBookingAction(Request $request, SerializerInterface $serializer) {
         $body = $request->getContent();
 
+        /**
+         * @var \App\Repository\BookingRepository $repository
+         */
+        $repository = $this->getDoctrine()->getRepository(Booking::class);
+
         try {
             /**
              * @var \App\Entity\Booking $booking
@@ -125,6 +133,10 @@ class BookingController extends AbstractController
 
             if($booking->getBeginningDate() > $booking->getEndingDate()) {
                 throw new \Exception('Ending date cannot be before beginning date !');
+            }
+
+            if($repository->findBookingToDate($booking->getBeginningDate()) || $repository->findBookingToDate($booking->getEndingDate())) {
+                throw new \Exception('Already Booked for this date');
             }
 
             $entityManager = $this->getDoctrine()->getManager();

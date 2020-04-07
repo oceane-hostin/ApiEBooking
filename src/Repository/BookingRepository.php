@@ -82,4 +82,15 @@ class BookingRepository extends ServiceEntityRepository
 
         return $query->execute();
     }
+
+    public function findBookingToDate($date) {
+        $qb = $this->createQueryBuilder('b')
+            ->where('b.beginningDate <= :date')
+            ->andWhere('b.endingDate >= :date')
+            ->setParameter('date', $date);
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
 }
