@@ -20,7 +20,7 @@ class BookingController extends AbstractController
 {
     /**
      * Lists all Booking for a particular person.
-     * @Route("/read/person_id/{personId}", name="read")
+     * @Route("/read/person_id/{personId}", name="read_person")
      *
      * @return Response
      */
@@ -41,9 +41,34 @@ class BookingController extends AbstractController
 
         return $response;
     }
+
+    /**
+     * Lists all Booking for a particular owner.
+     * @Route("/read/owner_id/{personId}", name="read_owner")
+     *
+     * @return Response
+     */
+    public function getOwnerBookingsAction(SerializerInterface $serializer, $personId){
+        /**
+         * @var \App\Repository\BookingRepository $repository
+         */
+        $repository = $this->getDoctrine()->getRepository(Booking::class);
+
+        $person = $this->getDoctrine()->getRepository(Person::class)->find($personId);
+
+        $bookingCollection = $repository->findOwnerBookings($person);
+
+        $bookingCollection = $serializer->serialize($bookingCollection, 'json');
+
+        $response = new Response($bookingCollection);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
     /**
      * Lists all Booking for a particular housing.
-     * @Route("/read/housing_id/{housingId}", name="read")
+     * @Route("/read/housing_id/{housingId}", name="read_housing")
      *
      * @return Response
      */
@@ -172,10 +197,10 @@ class BookingController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
 
-            return new Response('Booking confirmed successfully');
+            return new Response('{"status": "success"}');
 
         } catch (Exception $e) {
-            return new Response('Booking couldn\'t be confirmed' . $e);
+            return new Response('{"status": "failed"}');
         }
     }
 

@@ -20,8 +20,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/BookingController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="137" column="135" selection-start-line="137" selection-start-column="135" selection-end-line="137" selection-end-column="135" />
+            <state relative-caret-position="197">
+              <caret line="202" column="56" selection-start-line="202" selection-start-column="56" selection-end-line="202" selection-end-column="56" />
               <folding>
                 <element signature="e#34#57#0#PHP" expanded="true" />
               </folding>
@@ -32,8 +32,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Repository/BookingRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="85" column="37" selection-start-line="85" selection-start-column="20" selection-end-line="85" selection-end-column="37" />
+            <state relative-caret-position="373">
+              <caret line="65" selection-start-line="65" selection-end-line="65" />
               <folding>
                 <element signature="e#34#57#0#PHP" expanded="true" />
               </folding>
@@ -44,7 +44,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/HousingController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
+            <state relative-caret-position="1818">
               <caret line="108" column="56" selection-start-line="108" selection-start-column="56" selection-end-line="108" selection-end-column="56" />
               <folding>
                 <element signature="e#33#56#0#PHP" expanded="true" />
@@ -216,6 +216,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -244,7 +245,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -315,7 +315,8 @@
       <workItem from="1585841872010" duration="2941000" />
       <workItem from="1585998987804" duration="2023000" />
       <workItem from="1586085730391" duration="6223000" />
-      <workItem from="1586272357890" duration="3399000" />
+      <workItem from="1586272357890" duration="3823000" />
+      <workItem from="1586359189145" duration="3902000" />
     </task>
     <task id="LOCAL-00001" summary="fit all">
       <created>1579695422107</created>
@@ -520,11 +521,18 @@
       <option name="project" value="LOCAL" />
       <updated>1586094305333</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="check if booking date are correct">
+      <created>1586282779505</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1586282779505</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117857000" />
+    <option name="totallyTimeSpent" value="122183000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -536,10 +544,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18283582" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18496802" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -552,7 +560,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32936078" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49840087" visible="true" weight="0.37811485" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49840087" visible="true" weight="0.16901408" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50159913" side_tool="true" weight="0.21885157" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -585,7 +593,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="getOne create and update housing" />
     <MESSAGE value="create housing json body" />
     <MESSAGE value="update housing json body" />
     <MESSAGE value="deleting housing by id" />
@@ -610,7 +617,8 @@
     <MESSAGE value="chnagement dans les réponses envoyé au client (person + housing)" />
     <MESSAGE value="fix update" />
     <MESSAGE value="get current booking of user" />
-    <option name="LAST_COMMIT_MESSAGE" value="get current booking of user" />
+    <MESSAGE value="check if booking date are correct" />
+    <option name="LAST_COMMIT_MESSAGE" value="check if booking date are correct" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/config/packages/sensio_framework_extra.yaml">
@@ -729,13 +737,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/PersonController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2124">
-          <caret line="125" selection-start-line="125" selection-end-line="125" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="522">
@@ -784,7 +785,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/HousingController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
+        <state relative-caret-position="1818">
           <caret line="108" column="56" selection-start-line="108" selection-start-column="56" selection-end-line="108" selection-end-column="56" />
           <folding>
             <element signature="e#33#56#0#PHP" expanded="true" />
@@ -792,10 +793,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/PersonController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2124">
+          <caret line="125" selection-start-line="125" selection-end-line="125" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/BookingRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="85" column="37" selection-start-line="85" selection-start-column="20" selection-end-line="85" selection-end-column="37" />
+        <state relative-caret-position="373">
+          <caret line="65" selection-start-line="65" selection-end-line="65" />
           <folding>
             <element signature="e#34#57#0#PHP" expanded="true" />
           </folding>
@@ -804,8 +812,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/BookingController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="137" column="135" selection-start-line="137" selection-start-column="135" selection-end-line="137" selection-end-column="135" />
+        <state relative-caret-position="197">
+          <caret line="202" column="56" selection-start-line="202" selection-start-column="56" selection-end-line="202" selection-end-column="56" />
           <folding>
             <element signature="e#34#57#0#PHP" expanded="true" />
           </folding>
